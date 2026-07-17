@@ -1,12 +1,27 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../assets/CrisafiRealEstateFullLogo.png'
 
 function Navbar () {
     const [isResourcesOpen, setIsResourcesOpen] = useState(false)
+    const [isScrolled, setIsScrolled] = useState(false)
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 20)
+        }
+
+        window.addEventListener('scroll', handleScroll)
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
+
+    }, [])
 
     return (
-        <nav className="flex items-center justify-between px-8 py-4">
+        <nav className={`fixed top-0 left-0 w-full flex items-center justify-between px-8 py-4 transition-colors duration-300 z-50 
+            ${isScrolled ? 'bg-blue-950/70 backdrop-blur-sm' : 'bg-transparent'}`}>
             <Link to="/">
                 <img src={logo} alt="Crisafi Realty Logo" className="h-28 w-auto"/>
             </Link>
