@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import logo from '../assets/CrisafiRealEstateFullLogo.png'
+import logoColor from '../assets/CrisafiRealEstateFullLogo.png'
+import logoWhite from '../assets/CrisafiRealtyLogoFullWhitescale.png'
 
 function Navbar () {
     const [isResourcesOpen, setIsResourcesOpen] = useState(false)
     const [isScrolled, setIsScrolled] = useState(false)
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
     useEffect(() => {
         const handleScroll = () => {
@@ -23,10 +25,17 @@ function Navbar () {
         <nav className={`fixed top-0 left-0 w-full flex items-center justify-between px-8 py-4 transition-colors duration-300 z-50 
             ${isScrolled ? 'bg-blue-950/70 backdrop-blur-sm' : 'bg-transparent'}`}>
             <Link to="/">
-                <img src={logo} alt="Crisafi Realty Logo" className="h-28 w-auto"/>
+                <img src={isScrolled ? logoWhite : logoColor} alt="Crisafi Realty Logo"
+                     className={`w-auto transition-all duration-300 ${isScrolled ? 'h-16' : 'h-28'}`}/>
             </Link>
 
-            <div className="flex items-center gap-16 text-xl font-medium">
+            <button className="md:hidden text-2xl text-white" onCLick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    aria-label="Toggle menu">
+                {isMobileMenuOpen ? 'x' : '☰'}
+            </button>
+
+            <div className={`hidden md:flex items-center transition-all duration-300 font-medium ${
+                isScrolled ? 'gap-8 text-base text-white' : 'gap-16 text-xl text-black'}`}>
                 <Link to="/buy">Buy</Link>
                 <Link to="/sell">Sell</Link>
                 <Link to="/rent">Rent</Link>
@@ -53,6 +62,20 @@ function Navbar () {
                 <Link to="/contact">Contact</Link>
             </div>
 
+            {/* Mobile menu */}
+            {isMobileMenuOpen && (
+                <div className="absolute top-full left-0 w-full bg-blue-950 md:hidden flex
+                flex-col items-center gap-6 py-8 text-white text-2xl">
+                    <Link to="/buy" onClick{() => setIsMobileMenuOpen(false)}>Buy</Link>
+                    <Link to="/sell" onClick{() => setIsMobileMenuOpen(false)}>Sell</Link>
+                    <Link to="/rent" onClick{() => setIsMobileMenuOpen(false)}>Rent</Link>
+                    <Link to="/about" onClick{() => setIsMobileMenuOpen(false)}>About</Link>
+                    <Link to="/resources/buyers" onClick{() => setIsMobileMenuOpen(false)}>Buyer Resources</Link>
+                    <Link to="/resources/sellers" onClick{() => setIsMobileMenuOpen(false)}>Seller Resources</Link>
+                    <Link to="/resources/investors" onClick{() => setIsMobileMenuOpen(false)}>Investor Resources</Link>
+                    <Link to="/contact" onClick{() => setIsMobileMenuOpen(false)}>Contact</Link>
+                </div>
+            )}
         </nav>
     )
 }
