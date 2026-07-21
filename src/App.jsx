@@ -14,15 +14,17 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/buy" element={<Buy />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/rent" element={<Rent />} />
-                <Route path="/sell" element={<Sell />} />
-                <Route path="/resources/buyers" element={<BuyerResources />} />
-                <Route path="/resources/sellers" element={<SellerResources />} />
-                <Route path="/resources/investors" element={<InvestorResources />} />
+                <Route element={<Layout />}>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/buy" element={<Buy />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/rent" element={<Rent />} />
+                    <Route path="/sell" element={<Sell />} />
+                    <Route path="/resources/buyers" element={<BuyerResources />} />
+                    <Route path="/resources/sellers" element={<SellerResources />} />
+                    <Route path="/resources/investors" element={<InvestorResources />} />
+                </Route>
             </Routes>
         </BrowserRouter>
     )
