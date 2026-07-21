@@ -67,29 +67,27 @@ function Navbar () {
                         <span className={underlineStyle}></span>
                     </button>
 
-                    <div className="absolute top-full left-0 pt-3 w-64">
-                        <div
-                            className={`absolute top-full -left-4 pl-4 flex flex-col items-start gap-6 py-3 overflow-hidden origin-top transition-all duration-300 ${
-                                isScrolled ? 'w-56 bg-navy/85 text-white' : 'w-64 bg-transparent text-black'
-                            } ${
-                                isResourcesOpen
-                                    ? 'scale-y-100 opacity-100'
-                                    : 'scale-y-0 opacity-0 pointer-events-none'
-                            }`}
-                        >
-                            <Link to="/resources/buyers" className="relative inline-block group leading-none whitespace-nowrap">
-                                BUYER RESOURCES
-                                <span className={submenuUnderlineStyle}></span>
-                            </Link>
-                            <Link to="/resources/sellers" className="relative inline-block group leading-none whitespace-nowrap">
-                                SELLER RESOURCES
-                                <span className={submenuUnderlineStyle}></span>
-                            </Link>
-                            <Link to="/resources/investors" className="relative inline-block group leading-none whitespace-nowrap">
-                                INVESTOR RESOURCES
-                                <span className={submenuUnderlineStyle}></span>
-                            </Link>
-                        </div>
+                    <div
+                        className={`absolute top-full -left-4 pl-4 mt-4 flex flex-col items-start gap-6 py-3 overflow-hidden origin-top transition-all duration-300 ${
+                            isScrolled ? 'w-56 bg-navy/85 text-white' : 'w-64 bg-transparent text-black'
+                        } ${
+                            isResourcesOpen
+                                ? 'scale-y-100 opacity-100'
+                                : 'scale-y-0 opacity-0 pointer-events-none'
+                        }`}
+                    >
+                        <Link to="/resources/buyers" className="relative inline-block group leading-none whitespace-nowrap">
+                            BUYER RESOURCES
+                            <span className={submenuUnderlineStyle}></span>
+                        </Link>
+                        <Link to="/resources/sellers" className="relative inline-block group leading-none whitespace-nowrap">
+                            SELLER RESOURCES
+                            <span className={submenuUnderlineStyle}></span>
+                        </Link>
+                        <Link to="/resources/investors" className="relative inline-block group leading-none whitespace-nowrap">
+                            INVESTOR RESOURCES
+                            <span className={submenuUnderlineStyle}></span>
+                        </Link>
                     </div>
                 </div>
                 <Link to="/contact" className={navLinkStyle}>
