@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 import logoColor from '../assets/CrisafiRealtySerif.png'
 import logoWhite from '../assets/CrisafiRealtySerifWhite.png'
 
@@ -7,30 +7,37 @@ function Navbar () {
     const [isResourcesOpen, setIsResourcesOpen] = useState(false)
     const [isScrolled, setIsScrolled] = useState(false)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+    const location = useLocation()
 
     const navLinkStyle = "relative inline-block group"
     const underlineStyle = "absolute left-0 -bottom-1 w-full h-0.5 bg-current scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"
     const submenuUnderlineStyle = "absolute left-0 -bottom-2 w-full h-0.5 bg-current scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"
 
     useEffect(() => {
+        const heroSection = document.getElementById('hero-section')
+        const scrollThreshold = heroSection
+            ? heroSection.offsetHeight - window.innerHeight
+            : 20
+
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20)
+            setIsScrolled(window.scrollY > scrollThreshold)
         }
 
+        handleScroll()
         window.addEventListener('scroll', handleScroll)
 
         return () => {
             window.removeEventListener('scroll', handleScroll)
         }
 
-    }, [])
+    }, [location.pathname])
 
     return (
         <nav className={`font-title fixed top-0 left-0 w-full flex items-stretch justify-between px-8 py-4 transition-colors duration-300 z-50 
             ${isScrolled ? 'bg-navy/85 backdrop-blur-sm' : 'bg-transparent'}`}>
             <Link to="/" className="flex items-center">
                 <img src={isScrolled ? logoWhite : logoColor} alt="Crisafi Realty Logo"
-                     className={`w-auto transition-all duration-300 ${isScrolled ? 'h-16' : 'h-28'}`}/>
+                     className={`w-auto transition-all duration-300 ${isScrolled ? 'h-16' : 'h-28 drop-shadow-[0_0_12px_rgba(255,255,255,0.5)]'}`}/>
             </Link>
 
             <button className="md:hidden flex items-center justify-center text-2xl text-white" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

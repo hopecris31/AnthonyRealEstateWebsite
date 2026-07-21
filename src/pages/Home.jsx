@@ -1,5 +1,15 @@
+import HeroSection from "../components/home/HeroSection.jsx";
+import MissionSection from "../components/home/MissionSection.jsx";
+import GalleryRevealSection from "../components/home/GalleryRevealSection.jsx";
+
 function Home() {
-    return <h1>Home Page</h1>
+    return (
+        <div>
+            <HeroSection />
+            <MissionSection />
+            <GalleryRevealSection />
+        </div>
+    )
 }
 
 export default Home
